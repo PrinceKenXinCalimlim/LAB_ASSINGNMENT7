@@ -15,6 +15,7 @@ public class PdfDocument implements Document {
     public void open() {
         System.out.println("Opening PDF Document: " + fileName + " by " + author + " (" + pageCount + " pages)");
         System.out.println("Type: " + getType() + ", File: " + fileName + ", Author: " + author + ", Pages: " + pageCount);
+        System.out.println();
     }
 
     public String getType() {
@@ -22,7 +23,12 @@ public class PdfDocument implements Document {
     }
 
     public Document clone() {
-        return new PdfDocument(fileName, author, pageCount, name);
+        try {
+            return (PdfDocument) super.clone();
+        } catch (CloneNotSupportedException e) {
+            System.out.println("Cloning not supported!");
+            return null;
+        }
     }
 
     public void setFileName(String fileName) {
@@ -31,5 +37,9 @@ public class PdfDocument implements Document {
 
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

@@ -1,18 +1,19 @@
 public class TextDocument implements Document {
-    private int filePath;
+    private String path;
     private String encoding;
     private int wordCount;
 
-    public TextDocument(int filePath, String encoding, int wordCount) {
-        this.filePath = filePath;
+    public TextDocument(String path, String encoding, int wordCount) {
+        this.path = path;
         this.encoding = encoding;
         this.wordCount = wordCount;
         System.out.println("Creating a Text Document prototype.");
     }
 
     public void open() {
-        System.out.println("Opening Text Document: meeting_notes.txt with encoding: " + encoding + " (" + wordCount + " words)");
-        System.out.println("Type: " + getType() + ", Path: meeting_notes.txt, Encoding: " + encoding + ", Words: " + wordCount);
+        System.out.println("Opening Text Document: " + path + " with encoding: " + encoding + " (" + wordCount + " words)");
+        System.out.println("Type: " + getType() + ", Path: " + path + ", Encoding: " + encoding + ", Words: " + wordCount);
+        System.out.println();
     }
 
     public String getType() {
@@ -20,6 +21,11 @@ public class TextDocument implements Document {
     }
 
     public Document clone() {
-        return new TextDocument(filePath, encoding, wordCount);
+        try {
+            return (TextDocument) super.clone();
+        } catch (CloneNotSupportedException e) {
+            System.out.println("Cloning not supported!");
+            return null;
+        }
     }
 }

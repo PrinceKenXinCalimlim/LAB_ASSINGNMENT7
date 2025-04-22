@@ -7,12 +7,13 @@ public class SpreadsheetDocument implements Document {
         this.spreadsheetName = spreadsheetName;
         this.rowCount = rowCount;
         this.columnCount = columnCount;
-        System.out.println("Creating a Spreadsheet Document prototype.");
+        System.out.println("Creating a Spreadsheet Document prototype.\n");
     }
 
     public void open() {
         System.out.println("Opening Spreadsheet Document: " + spreadsheetName + " (" + rowCount + " rows, " + columnCount + " columns)");
         System.out.println("Type: " + getType() + ", Name: " + spreadsheetName + ", Rows: " + rowCount + ", Columns: " + columnCount);
+        System.out.println();
     }
 
     public String getType() {
@@ -20,6 +21,11 @@ public class SpreadsheetDocument implements Document {
     }
 
     public Document clone() {
-        return new SpreadsheetDocument(spreadsheetName, rowCount, columnCount);
+        try {
+            return (SpreadsheetDocument) super.clone();
+        } catch (CloneNotSupportedException e) {
+            System.out.println("Cloning not supported!");
+            return null;
+        }
     }
 }

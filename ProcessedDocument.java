@@ -2,8 +2,8 @@ public class ProcessedDocument {
     public static void main(String[] args) {
         DocumentRegistry registry = new DocumentRegistry();
 
-        Document pdf = registry.createPdf("annual_report_2024.pdf", 150);
-        pdf.open();
+        Document pdf1 = registry.createPdf("annual_report_2024.pdf", 150);
+        pdf1.open();
 
         Document text = registry.getTextDocumentPrototype();
         text.open();
